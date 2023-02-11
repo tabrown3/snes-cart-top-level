@@ -1,0 +1,6 @@
+DATE = "11:36:12 February 11, 2023"
+QUARTUS_VERSION = "12.0"
+
+# Revisions
+
+PROJECT_REVISION = "snes_cart_top_level"
