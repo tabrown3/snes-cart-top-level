@@ -1,2 +1,17 @@
 /sim
 /db
+/incremental_db
+snes_cart_top_level.asm.rpt
+snes_cart_top_level.done
+snes_cart_top_level.fit.rpt
+snes_cart_top_level.fit.smsg
+snes_cart_top_level.fit.summary
+snes_cart_top_level.flow.rpt
+snes_cart_top_level.jdi
+snes_cart_top_level.map.rpt
+snes_cart_top_level.map.summary
+snes_cart_top_level.pin
+snes_cart_top_level.sld
+snes_cart_top_level.sof
+snes_cart_top_level.sta.rpt
+snes_cart_top_level.sta.summary

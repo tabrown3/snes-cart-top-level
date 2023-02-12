@@ -84,13 +84,23 @@ input 		     [1:0]		bottom_IN;
 //  REG/WIRE declarations
 //=======================================================
 
+reg [7:0] out_byte = 8'h00;
 
-
+wire busy;
+wire [7:0] in_byte;
 
 //=======================================================
 //  Structural coding
 //=======================================================
 
-
+spi_slave SPI_SLAVE(
+	.cs(bottom[27]),
+	.spi_clk(bottom[17]),
+	.mosi(bottom[23]),
+	.out_byte(out_byte),
+	.miso(bottom[33]),
+	.busy(busy),
+	.in_byte(in_byte)
+);
 
 endmodule
