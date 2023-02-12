@@ -28,9 +28,9 @@ module spi_slave
 
             if (bit_cnt == 4'h7) begin
                 started <= ~started;
-                in_byte_reg[bit_cnt] <= mosi;
+                miso <= out_byte[bit_cnt];
             end else begin
-                in_byte_reg[bit_cnt] <= mosi;
+                miso <= out_byte[bit_cnt];
             end
             // negedge spi_clk
         end else if (!spi_clk && posedge_handled) begin
@@ -38,10 +38,10 @@ module spi_slave
 
             if (bit_cnt == 4'h0) begin
                 finished <= started;
-                miso <= out_byte[bit_cnt];
+                in_byte_reg[bit_cnt] <= mosi;
                 bit_cnt <= 4'h7;
             end else begin
-                miso <= out_byte[bit_cnt];
+                in_byte_reg[bit_cnt] <= mosi;
                 bit_cnt <= bit_cnt - 1;
             end
         end

@@ -4,7 +4,7 @@ module tb_spi_slave();
     reg clk = 1'b0;
     reg spi_clk = 1'b0;
     reg mosi = 1'b0;
-    reg [7:0] out_byte = 8'h00;
+    reg [7:0] out_byte = 8'h59;
     wire miso;
     wire busy;
     wire [7:0] in_byte;
@@ -37,9 +37,9 @@ module tb_spi_slave();
         #62;
         for(i = 0; i < 8; i = i + 1) begin
             spi_clk = 1'b1;
+            mosi = $random;
             #20;
             spi_clk = 1'b0;
-            mosi = $random;
             #20;
         end
 
