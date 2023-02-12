@@ -22,6 +22,7 @@ module spi_slave
     assign in_byte = in_byte_reg;
 
     always @(posedge clk) begin
+        // posedge spi_clk
         if (spi_clk && !posedge_handled) begin
             posedge_handled <= 1'b1;
 
@@ -31,6 +32,7 @@ module spi_slave
             end else begin
                 in_byte_reg[bit_cnt] <= mosi;
             end
+            // negedge spi_clk
         end else if (!spi_clk && posedge_handled) begin
             posedge_handled <= 1'b0;
 
