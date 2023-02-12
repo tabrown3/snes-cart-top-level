@@ -11,7 +11,7 @@ module spi_slave
 
     reg started = 1'b0;
     reg finished = 1'b0;
-    reg [3:0] bit_cnt = 4'h0;
+    reg [3:0] bit_cnt = 4'h7;
     reg [7:0] in_byte_reg = 8'h00;
     // Tracks whether the spi_clk rising transition has been handled,
     //  since it should only be handled once, and the falling can only
@@ -26,7 +26,7 @@ module spi_slave
         if (spi_clk && !posedge_handled) begin
             posedge_handled <= 1'b1;
 
-            if (bit_cnt == 4'h0) begin
+            if (bit_cnt == 4'h7) begin
                 started <= ~started;
                 in_byte_reg[bit_cnt] <= mosi;
             end else begin
@@ -36,13 +36,13 @@ module spi_slave
         end else if (!spi_clk && posedge_handled) begin
             posedge_handled <= 1'b0;
 
-            if (bit_cnt == 7) begin
+            if (bit_cnt == 4'h0) begin
                 finished <= started;
                 miso <= out_byte[bit_cnt];
-                bit_cnt <= 0;
+                bit_cnt <= 4'h7;
             end else begin
                 miso <= out_byte[bit_cnt];
-                bit_cnt <= bit_cnt + 1;
+                bit_cnt <= bit_cnt - 1;
             end
         end
     end

@@ -42,5 +42,7 @@ module tb_spi_slave();
             mosi = $random;
             #20;
         end
+
+        out_byte = $random;
     end
 endmodule
