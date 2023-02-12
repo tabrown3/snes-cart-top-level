@@ -88,10 +88,16 @@ reg [7:0] out_byte = 8'h00;
 
 wire busy;
 wire [7:0] in_byte;
+wire debug_clk;
 
 //=======================================================
 //  Structural coding
 //=======================================================
+
+debug_pll DEBUG_PLL(
+	.inclk0(CLOCK_50),
+	.c0(debug_clk)
+);
 
 spi_slave SPI_SLAVE(
 	.cs(bottom[27]),

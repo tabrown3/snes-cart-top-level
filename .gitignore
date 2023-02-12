@@ -1,6 +1,7 @@
 /sim
 /db
 /incremental_db
+/greybox_tmp
 snes_cart_top_level.asm.rpt
 snes_cart_top_level.done
 snes_cart_top_level.fit.rpt
