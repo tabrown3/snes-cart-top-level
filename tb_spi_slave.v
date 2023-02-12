@@ -1,7 +1,7 @@
 `timescale 10ns/1ns
 module tb_spi_slave();
 
-    reg clk = 1'b0;
+    reg cs = 1'b1;
     reg spi_clk = 1'b0;
     reg mosi = 1'b0;
     reg [7:0] out_byte = 8'h59;
@@ -12,7 +12,7 @@ module tb_spi_slave();
     integer i = 0;
 
     spi_slave SPI_SLAVE(
-        .clk(clk),
+        .cs(cs),
         .spi_clk(spi_clk),
         .mosi(mosi),
         .out_byte(out_byte),
@@ -22,19 +22,14 @@ module tb_spi_slave();
     );
 
     initial begin
-        #5000;
+        #50;
+        cs = 1'b0;
+        #4950;
         $stop;
     end
 
     always begin
-        #5;
-        clk = 1'b1;
-        #5;
-        clk = 1'b0;
-    end
-
-    always begin
-        #62;
+        #50;
         for(i = 0; i < 8; i = i + 1) begin
             spi_clk = 1'b1;
             mosi = $random;
