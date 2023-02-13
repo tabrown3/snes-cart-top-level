@@ -100,9 +100,9 @@ debug_pll DEBUG_PLL(
 );
 
 spi_slave SPI_SLAVE(
-	.cs(bottom[27]),
+	.cs(bottom[23]),
 	.spi_clk(bottom[17]),
-	.mosi(bottom[23]),
+	.mosi(bottom[27]),
 	.out_byte(out_byte),
 	.miso(bottom[33]),
 	.busy(busy),
