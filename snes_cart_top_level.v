@@ -84,11 +84,11 @@ input 		     [1:0]		bottom_IN;
 //  REG/WIRE declarations
 //=======================================================
 
-reg [7:0] out_byte = 8'h00;
-
 wire byte_finished;
 wire [7:0] in_byte;
+wire [7:0] out_byte;
 wire debug_clk;
+wire clk;
 
 //=======================================================
 //  Structural coding
@@ -96,7 +96,8 @@ wire debug_clk;
 
 debug_pll DEBUG_PLL(
 	.inclk0(CLOCK_50),
-	.c0(debug_clk)
+	.c0(debug_clk),
+	.c1(clk)
 );
 
 spi_slave SPI_SLAVE(
@@ -107,6 +108,13 @@ spi_slave SPI_SLAVE(
 	.miso(bottom[33]),
 	.in_byte(in_byte),
 	.finished(byte_finished)
+);
+
+cmd_manager CMD_MANAGER(
+	.clk(clk),
+	.in_byte(in_byte),
+	.byte_finished(byte_finished),
+	.out_byte(out_byte)
 );
 
 endmodule
