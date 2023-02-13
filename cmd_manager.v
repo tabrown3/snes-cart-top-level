@@ -17,7 +17,7 @@ module cmd_manager
     always @(posedge clk) begin
         if (byte_finished ^ prev_finished) begin
             prev_finished <= byte_finished;
-            cmd_frame[(byte_cnt * 8) - 1:(byte_cnt - 1 * 8)] <= in_byte;
+            cmd_frame[(byte_cnt * 8) - 1-:8] <= in_byte;
             
             if (byte_cnt > 3'h1) begin
                 byte_cnt <= byte_cnt - 3'h1;
