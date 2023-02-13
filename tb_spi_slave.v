@@ -6,8 +6,8 @@ module tb_spi_slave();
     reg mosi = 1'b0;
     reg [7:0] out_byte = 8'h59;
     wire miso;
-    wire busy;
     wire [7:0] in_byte;
+    wire finished;
 
     integer i = 0;
 
@@ -17,8 +17,8 @@ module tb_spi_slave();
         .mosi(mosi),
         .out_byte(out_byte),
         .miso(miso),
-        .busy(busy),
-        .in_byte(in_byte)
+        .in_byte(in_byte),
+        .finished(finished)
     );
 
     initial begin

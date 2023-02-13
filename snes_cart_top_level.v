@@ -86,7 +86,7 @@ input 		     [1:0]		bottom_IN;
 
 reg [7:0] out_byte = 8'h00;
 
-wire busy;
+wire byte_finished;
 wire [7:0] in_byte;
 wire debug_clk;
 
@@ -105,8 +105,8 @@ spi_slave SPI_SLAVE(
 	.mosi(bottom[27]),
 	.out_byte(out_byte),
 	.miso(bottom[33]),
-	.busy(busy),
-	.in_byte(in_byte)
+	.in_byte(in_byte),
+	.finished(byte_finished)
 );
 
 endmodule
