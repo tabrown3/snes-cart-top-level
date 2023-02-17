@@ -5,16 +5,19 @@ module cmd_manager
     input clk,
     input [7:0] in_byte,
     input byte_finished,
-    output reg [31:0] cmd_frame = 32'h00000000
+    output [7:0] cmd,
+    output [7:0] arg1,
+    output [7:0] arg2,
+    output [7:0] crc
 );
-
-    localparam [5:0] INITIALIZE_CMD = 6'h00;
-    localparam [5:0] WRITE_BYTE_CMD = 6'h01;
-    localparam [5:0] READ_BYTE_CMD = 6'h02;
-
-    reg prev_finished = 1'b0;
-
     reg [2:0] byte_cnt = 3'h4;
+    reg prev_finished = 1'b0;
+    reg [31:0] cmd_frame = 32'h00000000;
+
+    assign cmd = cmd_frame[31:24];
+    assign arg1 = cmd_frame[23:16];
+    assign arg2 = cmd_frame[15:8];
+    assign crc = cmd_frame[7:0];
 
     always @(posedge clk) begin
         if (reset) begin

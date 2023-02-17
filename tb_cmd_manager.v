@@ -5,7 +5,10 @@ module tb_cmd_manager();
     reg clk = 1'b0;
     reg [7:0] in_byte = 8'h00;
     reg byte_finished = 1'b0;
-    wire [31:0] cmd_frame;
+    wire [7:0] cmd;
+    wire [7:0] arg1;
+    wire [7:0] arg2;
+    wire [7:0] crc;
 
     cmd_manager CMD_MANAGER(
         .reset(reset),
@@ -13,7 +16,10 @@ module tb_cmd_manager();
         .clk(clk),
         .in_byte(in_byte),
         .byte_finished(byte_finished),
-        .cmd_frame(cmd_frame)
+        .cmd(cmd),
+        .arg1(arg1),
+        .arg2(arg2),
+        .crc(crc)
     );
 
     initial begin
