@@ -6,7 +6,7 @@ module crc_manager(
     output reg [7:0] crc8 = 8'h00,
     output reg [15:0] crc16 = 16'h00
 );
-    always @(posedge spi_clk) begin
+    always @(negedge spi_clk) begin
         if (reset) begin
             crc8 <= 8'h00;
             crc16 <= 16'h00;
