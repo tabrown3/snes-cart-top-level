@@ -8,7 +8,8 @@ module cmd_manager
     output [7:0] cmd,
     output [7:0] arg1,
     output [7:0] arg2,
-    output [7:0] crc
+    output [7:0] crc,
+    output reg frame_finished = 1'b0
 );
     reg [2:0] byte_cnt = 3'h4;
     reg prev_finished = 1'b0;
@@ -34,6 +35,7 @@ module cmd_manager
                         byte_cnt <= byte_cnt - 3'h1;
                     end else begin
                         byte_cnt <= 3'h4;
+                        frame_finished <= ~frame_finished;
                     end
                 end
             end

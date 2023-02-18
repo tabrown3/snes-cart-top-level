@@ -9,6 +9,7 @@ module tb_cmd_manager();
     wire [7:0] arg1;
     wire [7:0] arg2;
     wire [7:0] crc;
+    wire frame_finished;
 
     cmd_manager CMD_MANAGER(
         .reset(reset),
@@ -19,7 +20,8 @@ module tb_cmd_manager();
         .cmd(cmd),
         .arg1(arg1),
         .arg2(arg2),
-        .crc(crc)
+        .crc(crc),
+        .frame_finished(frame_finished)
     );
 
     initial begin
