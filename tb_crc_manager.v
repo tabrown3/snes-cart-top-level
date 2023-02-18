@@ -8,7 +8,7 @@ module tb_crc_manager();
     wire [15:0] crc16;
 
     integer i;
-    reg [15:0] test_buffer = 16'h0500;
+    reg [31:0] test_buffer = 32'habcd0000;
 
     crc_manager CRC_MANAGER(
         .reset(reset),
@@ -30,6 +30,22 @@ module tb_crc_manager();
     end
 
     always begin
+        #50;
+        for(i = 31; i >= 24; i = i - 1) begin
+            spi_clk = 1'b1;
+            mosi = test_buffer[i];
+            #20;
+            spi_clk = 1'b0;
+            #20;
+        end
+        #50;
+        for(i = 23; i >= 16; i = i - 1) begin
+            spi_clk = 1'b1;
+            mosi = test_buffer[i];
+            #20;
+            spi_clk = 1'b0;
+            #20;
+        end
         #50;
         for(i = 15; i >= 8; i = i - 1) begin
             spi_clk = 1'b1;
