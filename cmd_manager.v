@@ -19,7 +19,7 @@ module cmd_manager
     assign arg2 = cmd_frame[15:8];
     assign crc = cmd_frame[7:0];
 
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if (reset) begin
             byte_cnt <= 3'h4;
             prev_finished <= byte_finished;
