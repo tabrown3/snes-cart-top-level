@@ -5,7 +5,7 @@ module spi_slave
     input [7:0] out_byte,
     output reg miso = 1'b0,
     output [7:0] in_byte,
-    output reg finished = 1'b0
+    output reg byte_finished = 1'b0
 );
 
     reg [3:0] bit_cnt = 4'h7;
@@ -23,7 +23,7 @@ module spi_slave
 
     always @(negedge spi_clk) begin
         if (bit_cnt == 4'h0) begin
-            finished <= ~finished;
+            byte_finished <= ~byte_finished;
             in_byte_reg[bit_cnt] <= mosi;
             bit_cnt <= 4'h7;
         end else begin

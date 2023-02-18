@@ -22,7 +22,7 @@ module snes_cart(
         .out_byte(out_byte),
         .miso(miso),
         .in_byte(in_byte),
-        .finished(byte_finished)
+        .byte_finished(byte_finished)
     );
 
     cmd_manager CMD_MANAGER(
