@@ -13,5 +13,6 @@ module brain(
     output reg crc_en = 1'b1,
     output reg [7:0] out_byte = 8'h00
 );
-
+    localparam [7:0] AWAITING_INIT_CMD = 8'h01;
+    localparam [7:0] INITIALIZING_RAM = 8'h02;
 endmodule
